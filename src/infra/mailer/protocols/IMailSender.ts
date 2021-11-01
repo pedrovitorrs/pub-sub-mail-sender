@@ -1,28 +1,25 @@
-export interface IAddres {
-    email: string
-    name: string
-}
-
-export interface IMailSenderAuth {
-    user: string
-    pass: string
-}
-
 export interface IMailSenderConfiguration {
     host: string
+    service?: string
     port: number
     secure: boolean
-    auth: IMailSender
-}
-
-export interface IMessage {
-    to: IAddres
-    from: IAddres
+    auth: IMailSenderAuthConfiguration
+  }
+  
+  export interface IMailSenderAuthConfiguration {
+    user: string
+    pass: string
+  }
+  
+  export interface IMailSenderMessage {
+    from: string
+    to: string
     subject: string
+    text: string
     html: string
-}
-
-export interface IMailSender<T = IMailSenderConfiguration> {
+  }
+  export interface IMailSender<T = any> {
     configure: (configuration: IMailSenderConfiguration) => T
-    sendMail(message: IMessage): Promise<void>;
-}
+    sendMail: (message: IMailSenderMessage) => Promise<void>
+  }
+  

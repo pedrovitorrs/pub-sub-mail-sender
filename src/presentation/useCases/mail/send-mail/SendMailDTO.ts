@@ -1,13 +1,15 @@
 import { IsEmail, IsNotEmpty } from 'class-validator'
-import { IAddres } from '../../../../infra/mailer/protocols/IMailSender'
 
 export class SendMailDTO {
     @IsNotEmpty({ message: 'To is required!' })
-    public to: IAddres
+    public to: string
+
     @IsNotEmpty({ message: 'From is required!' })
-    public from: IAddres
+    public from: string
+    
     @IsNotEmpty({ message: 'Subject is required!' })
     public subject: string
+    
     @IsNotEmpty({ message: 'Text is required!' })
     public html: string
 }

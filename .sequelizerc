@@ -1,0 +1,11 @@
+require('dotenv').config({ path: `.env.${process.env.NODE_ENV || 'development'}`.replace(/\.$/, '') });
+
+const path = require('path');
+
+const database = path.resolve(__dirname, 'src', 'infra', 'database', 'sequelize')
+module.exports = {
+  'config': path.resolve(__dirname, 'sequelize-config.js'),
+  'models-path': path.resolve(database, 'models'),
+  'seeders-path': path.resolve(database, 'seeders'),
+  'migrations-path': path.resolve(database, 'migrations')
+};

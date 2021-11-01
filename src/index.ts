@@ -6,10 +6,12 @@ import EnvironmentLoader from './infra/env/EnvironmentLoader'
 
 const main = (): void => {
   EnvironmentLoader.load()
-  const port = EnvironmentHelper.get('APP_PORT', 3333)
+  const port = EnvironmentHelper.get('APP_PORT', 3000)
 
   const server = new ExpressApplicationAdapter().start(port)
-  new HttpBootstrapApplication(server).bootstrap().catch(console.error)
+  new HttpBootstrapApplication(server)
+    .bootstrap()
+    .catch(console.error)
 }
 
 main()

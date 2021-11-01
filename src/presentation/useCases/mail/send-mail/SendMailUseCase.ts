@@ -1,15 +1,19 @@
+import MailEntity from "../../../../domain/entities/MailEntity/Mail"
+import { SendMailPublisher } from "../../../../infra/database/redis/bull/publishers/SendMailPublisher"
+import MailRepository from "../../../../infra/database/sequelize/repositories/MailRepository"
 import { NodemailerMailSender } from "../../../../infra/mailer/NodemailerMailSender"
 import { SendMailDTO } from "./SendMailDTO"
 
 export class SendMailUseCase {
   constructor (
-    private readonly nodemailerMailSender: NodemailerMailSender
+    private readonly mailRepository: MailRepository,
+    private readonly sendMailPublisher: SendMailPublisher
   ) { }
 
   async execute (sendMailDTO: SendMailDTO): Promise<any> {
-        // TODO - Terminar de implementar função que faz o envio do email
-        //this.nodemailerMailSender.configure()
-        //return this.nodemailerMailSender.sendMail(sendMailDTO)
-        return console.log(sendMailDTO)
+        const mailEntity = new MailEntity(sendMailDTO.from, sendMailDTO.to, sendMailDTO.subject, sendMailDTO.html)
+        
+        await this.mailRepository.save(mailEntity)
+        await this.sendMailPublisher.publish({ mailId: mailEntity.id })
     }
 }
