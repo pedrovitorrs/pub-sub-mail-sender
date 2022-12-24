@@ -10,8 +10,8 @@ export class MailSenderFactory {
 
     mailSender.configure({
       host: EnvironmentHelper.get<string>('SMTP_HOST', ''),
-      port: EnvironmentHelper.get<number>('SMTP_PORT'),
-      secure: EnvironmentHelper.get<boolean>('SMTP_SECURE', false),
+      port: EnvironmentHelper.get<number>('SMTP_PORT') * 1,
+      secure: Boolean(JSON.parse(EnvironmentHelper.get<string>('SMTP_SECURE'))),
       auth: {
         user: EnvironmentHelper.get<string>('SMTP_FROM'), // generated ethereal user
         pass: EnvironmentHelper.get<string>('SMTP_PASS') // generated ethereal password

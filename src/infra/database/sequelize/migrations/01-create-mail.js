@@ -25,7 +25,8 @@ const MailStatusRoles = {
         allowNull: false,
       },
       mailText: {
-        type: Sequelize.STRING,
+        length: 1000,
+        type: Sequelize.STRING(1000),
         allowNull: false,
       },
       mailStatus: {

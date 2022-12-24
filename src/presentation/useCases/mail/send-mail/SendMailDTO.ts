@@ -1,6 +1,9 @@
 import { IsEmail, IsNotEmpty } from 'class-validator'
+import { IPayload } from '../../../../infra/events/publisher/protocols/IPayload'
 
-export class SendMailDTO {
+export class SendMailDTO implements IPayload {
+    public mailId: string
+
     @IsNotEmpty({ message: 'To is required!' })
     public to: string
 
