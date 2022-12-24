@@ -1,5 +1,7 @@
 # Pub Sub Mail Sender - NodeJS API
 
+Esta é uma simples API para envio de email utilizando os conceitos do Publish–Subscribe Pattern.
+
 ## Instalação
 
 Para instalar as dependências clone o projeto e execute o seguinte comando dentro da pasta.
