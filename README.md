@@ -1,6 +1,6 @@
 # Pub Sub Mail Sender - NodeJS API
 
-Esta é uma simples API para projeto financeiro utilizando Golang, Postgres e JWT.
+Esta é uma simples API para envio de email utilizando os conceitos do Publish–Subscribe Pattern.
 
 ## Instalação
 
